@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import TokenContext from "../assets/context/TokenContext";
+import { useContext } from "react";
 
 function Header(){
+    const {data} = useContext(TokenContext)
+
     return(
         <Head>
             <p>TrackIt</p>
-            <img src="https://gartic.com.br/imgs/mural/ar/arc4n1n3_m1l_gr4u/pyke-p-monk-d-iago.png"alt="perfil"/>
+            <img src={data.image}alt="perfil"/>
         </Head>
     )
 }

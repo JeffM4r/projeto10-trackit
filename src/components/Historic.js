@@ -3,18 +3,18 @@ import { createGlobalStyle } from 'styled-components';
 import Header from "./Header";
 import Footer from "./Footer";
 
-function Habits() {
+function Historic() {
+    
     return (
         <>
             <GlobalStyle />
             <Header />
             <Main>
                 <AddHabits>
-                    <p>Meus hábitos</p>
-                    <button><ButtonText>+</ButtonText></button>
+                    <p>Histórico</p>
                 </AddHabits>
                 <NoHabits>
-                    <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                    <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
                 </NoHabits>
             </Main>
             <Footer />
@@ -58,12 +58,6 @@ p{
 }
 `
 
-const ButtonText = styled.span`
-position: absolute;
-bottom: 3px;
-right: 13px;
-`
-
 const NoHabits = styled.div`
 width: 100vw;
 display: flex;
@@ -72,11 +66,11 @@ p{
     margin-top: 28px;
     width: 90vw;
     color: #666666;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 22px;
 }
 `
 
 
 
-export default Habits;
+export default Historic;

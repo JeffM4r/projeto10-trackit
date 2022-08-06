@@ -1,20 +1,55 @@
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import Logo from "../assets/imgs/Logo.png"
+import Logo from "../assets/imgs/Logo.png";
+import { signUp } from "../assets/services/trackIt";
+import { ThreeDots } from  'react-loader-spinner';
+import { useState } from "react";
 
 function SignUp() {
+    const [isSignIn,setIsSignIn] = useState(false);
+    const [form ,setForm] = useState({email: "", name: "", image: "", password: ""});
+    let navigate = useNavigate();
+
+    function SignUpError(){
+        setIsSignIn(false);
+        alert("Houve um erro nessa tentativa de cadastro, por favor tente novamente");        
+    }
+
+    function SignUpSucces(response){
+        console.log(response)
+        navigate('/')
+    }
+
+    function handleSubmit(event){
+        event.preventDefault();
+        if(isSignIn){return};
+        setIsSignIn(!isSignIn);
+        const promise = signUp(form);
+        promise.then(response => SignUpSucces(response));
+        promise.catch(SignUpError);                
+    }   
+
     return (
         <Main>
             <img src={Logo} alt="logo" />
-            <SignForm>
-                <input type="email" placeholder="email" />
-                <input type="password" placeholder="senha" />
-                <input type="text" placeholder="nome" />
-                <input placeholder="foto" />
-                <button>Cadastrar</button>
+            <SignForm onSubmit={handleSubmit} isSignIn={isSignIn}>
+                <input required disabled={isSignIn ? true: false } onChange={(e) => setForm({...form, email: e.target.value})} type="email" placeholder="email" />
+                <input required disabled={isSignIn ? true: false } onChange={(e) => setForm({...form, password: e.target.value})} type="password" placeholder="senha" />
+                <input required disabled={isSignIn ? true: false } onChange={(e) => setForm({...form, name: e.target.value})} type="text" placeholder="nome" />
+                <input required disabled={isSignIn ? true: false } onChange={(e) => setForm({...form, image: e.target.value})} placeholder="foto" />
+                <button>{isSignIn? 
+                        <ThreeDots
+                        height = "35"
+                        width = "80"
+                        radius = "9"
+                        color = 'white'
+                        ariaLabel = 'three-dots-loading'     
+                        wrapperStyle
+                        wrapperClass
+                        />:"Cadastrar"}</button>                
             </SignForm>
             <Link to="/">
-                <p>Não tem uma conta? Cadastre-se!</p>
+                <p>Já tem uma conta? Faça login!</p>
             </Link>
 
         </Main>
@@ -25,7 +60,7 @@ function SignUp() {
 const Main = styled.main`
 display: flex;
 flex-direction: column;
-height: 100vh;
+height: 80vh;
 width: 100vw;
 align-items: center;
 margin-top: 68px;
@@ -63,9 +98,13 @@ margin-bottom: 25px;
        color: #DBDBDB;
     }
     button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border:none;
-        background: #52B6FF;
+        background:  #52B6FF;
         color: #FFFFFF;
+        ${props => props.isSignIn ?  "opacity: 0.7;" : ""}  
     }
 `
 

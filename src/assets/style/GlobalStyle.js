@@ -52,7 +52,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #FFFFFF;
     font-family: 'Lexend Deca', sans-serif;
   }
 
