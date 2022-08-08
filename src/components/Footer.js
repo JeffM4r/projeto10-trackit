@@ -11,7 +11,7 @@ function Footer(){
         
         <Foot>
             <Link to="/habitos" style={{textDecoration:"none"}}><p>Hábitos</p></Link>
-            <Link to="/hoje"><Circle><div><CircularProgressbarWithChildren styles={buildStyles({pathTransitionDuration: 0.15})} value={percent} maxValue={tarefas}><Text>hoje</Text></CircularProgressbarWithChildren></div></Circle></Link>
+            <Link to="/hoje"><Circle><div><CircularProgressbarWithChildren styles={buildStyles({pathTransitionDuration: 0.25})} value={percent} maxValue={tarefas}><Text>hoje</Text></CircularProgressbarWithChildren></div></Circle></Link>
             <Link to="/historico" style={{textDecoration:"none"}}> <p>Histórico</p> </Link>
         </Foot>
     )
@@ -52,6 +52,7 @@ margin-top: 68px;
 `
 
 const Foot = styled.footer`
+z-index: 1;
 display: flex;
 align-items: center;
 justify-content: space-between;

@@ -14,6 +14,7 @@ function Header(){
 }
 
 const Head = styled.header`
+z-index: 1;
 display: flex;
 align-items: center;
 justify-content: space-between;

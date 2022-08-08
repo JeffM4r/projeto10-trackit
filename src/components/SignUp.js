@@ -10,6 +10,7 @@ function SignUp() {
     const [form ,setForm] = useState({email: "", name: "", image: "", password: ""});
     let navigate = useNavigate();
 
+
     function SignUpError(){
         setIsSignIn(false);
         alert("Houve um erro nessa tentativa de cadastro, por favor tente novamente");        
@@ -26,7 +27,7 @@ function SignUp() {
         setIsSignIn(!isSignIn);
         const promise = signUp(form);
         promise.then(response => SignUpSucces(response));
-        promise.catch(SignUpError);                
+        promise.catch(response => SignUpError(response));                
     }   
 
     return (

@@ -12,7 +12,7 @@ import TokenContext from '../assets/context/TokenContext';
 
 
 function App() {
-    const [data, setData] = useState("")
+    const [data, setData] = useState()
     const [percent, setPercent] = useState([])
     const [confirmed, setConfirmed] = useState(0)
 
