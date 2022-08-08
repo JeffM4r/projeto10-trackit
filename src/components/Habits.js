@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { createGlobalStyle } from 'styled-components';
 import Header from "./Header";
 import Footer from "./Footer";
-import { sendHabit, receiveHabit,  deleteHabit } from "../assets/services/trackIt";
+import { sendHabit, receiveHabit, deleteHabit } from "../assets/services/trackIt";
 import TokenContext from "../assets/context/TokenContext";
 import { useContext } from "react";
 import { ThreeDots } from 'react-loader-spinner';
 
-function Week({ children, daysSelected, setDaysSelected, day, isLoading,reseter,setReseter }) {
+function Week({ children, daysSelected, setDaysSelected, day, isLoading, reseter, setReseter }) {
     const [selected, setSelected] = useState(false)
 
     useEffect(() => {
@@ -47,7 +47,7 @@ function Habits() {
     const [hasHabits, setHasHabits] = useState(true)
     const [habitsList, setHabitsList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [reseter,setReseter] = useState(false)
+    const [reseter, setReseter] = useState(false)
     const config = { headers: { "Authorization": `Bearer ${data.token}` } }
 
     useEffect(() => {
@@ -65,11 +65,11 @@ function Habits() {
         alert("Tente novamente");
     }
 
-    function deletingHabit(id){
+    function deletingHabit(id) {
         const certain = window.confirm("Tem certeza que quer excluir?")
-        if(certain === true){
+        if (certain === true) {
             const response = deleteHabit(id, config)
-            response.then(response => {setIsLoading(true);setIsLoading(false);})
+            response.then(response => { setIsLoading(true); setIsLoading(false); })
         }
     }
 
@@ -135,7 +135,7 @@ function Habits() {
                 {habitsList.map(habit =>
                     <HabitsAdded key={habit.id}>
                         <p>{habit.name}</p>
-                        <ion-icon onClick={()=>deletingHabit(habit.id)} name="trash-outline"></ion-icon>
+                        <ion-icon onClick={() => deletingHabit(habit.id)} name="trash-outline"></ion-icon>
                         <AddedWeekButtons>
                             {habit.days.includes(0) ? <ActiveButton><p>D</p></ActiveButton> : habit.days.includes("0") ? <ActiveButton><p>D</p></ActiveButton> : <InactiveButton><p>D</p></InactiveButton>}
                             {habit.days.includes(1) ? <ActiveButton><p>S</p></ActiveButton> : habit.days.includes("1") ? <ActiveButton><p>S</p></ActiveButton> : <InactiveButton><p>S</p></InactiveButton>}

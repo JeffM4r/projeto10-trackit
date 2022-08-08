@@ -27,4 +27,19 @@ function deleteHabit(id, token){
   return promise
 }
 
-export { login, signUp, sendHabit, receiveHabit, deleteHabit };
+function getHabit(token){
+  const promise = axios.get(`${BASE_URL}/habits/today`,token);
+  return promise
+}
+
+function checkHabit(id, token){
+  const promise = axios.post(`${BASE_URL}/habits/${id}/check`,"", token);
+  return promise
+}
+
+function uncheckHabit(id, token){
+  const promise = axios.post(`${BASE_URL}/habits/${id}/uncheck`,"", token);
+  return promise
+}
+
+export { login, signUp, sendHabit, receiveHabit, deleteHabit,  getHabit, checkHabit, uncheckHabit };

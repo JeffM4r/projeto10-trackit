@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import {Link} from 'react-router-dom';
+import TokenContext from '../assets/context/TokenContext';
+import { useContext } from "react";
 
 function Footer(){
-    const percent = 3
-    const tarefas = 4
-
+    const {percent} = useContext(TokenContext)
 
     return(
         
         <Foot>
             <Link to="/habitos" style={{textDecoration:"none"}}><p>Hábitos</p></Link>
-            <Link to="/hoje"><Circle><div><CircularProgressbarWithChildren styles={buildStyles({pathTransitionDuration: 0.25})} value={percent} maxValue={tarefas}><Text>hoje</Text></CircularProgressbarWithChildren></div></Circle></Link>
+            <Link to="/hoje"><Circle><div><CircularProgressbarWithChildren styles={buildStyles({pathTransitionDuration: 0.25})} value={percent}><Text>hoje</Text></CircularProgressbarWithChildren></div></Circle></Link>
             <Link to="/historico" style={{textDecoration:"none"}}> <p>Histórico</p> </Link>
         </Foot>
     )

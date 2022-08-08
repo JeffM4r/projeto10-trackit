@@ -16,8 +16,7 @@ function SignUp() {
         alert("Houve um erro nessa tentativa de cadastro, por favor tente novamente");        
     }
 
-    function SignUpSucces(response){
-        console.log(response)
+    function SignUpSucces(){
         navigate('/')
     }
 

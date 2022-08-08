@@ -12,13 +12,12 @@ function Login() {
     const [form ,setForm] = useState({email: "", password: ""});
     let navigate = useNavigate();
 
-    function SignUpError(){
+    function LoginError(){
         setIsLogIn(false);
         alert("Houve um erro nessa tentativa de login, por favor verifique seu email e senha");
     }
 
-    function SignUpSucces(response){
-        console.log(response)
+    function LoginSucces(response){
         setData(response.data)
         navigate('/hoje')
     }
@@ -28,8 +27,8 @@ function Login() {
         if(isLogIn){return};
         setIsLogIn(!isLogIn);
         const promise = login(form);
-        promise.then(response => SignUpSucces(response));
-        promise.catch(SignUpError);                
+        promise.then(response => LoginSucces(response));
+        promise.catch(response => LoginError(response));                
     }   
 
     return (
